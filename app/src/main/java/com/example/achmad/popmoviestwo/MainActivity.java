@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Discover> call, Response<Discover> response) {
                 StringBuilder sb = new StringBuilder();
-                for(Movie movie : response.body().getMovies()){
+                for(Movie movie : response.body().getMovies()){ 
                     Log.d("gambar","http://image.tmdb.org/t/p/w185"+movie.getPosterPath());
                     mGridAdapter.add(movie);
                 }
