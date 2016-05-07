@@ -3,6 +3,7 @@ package com.example.achmad.popmoviestwo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -26,50 +27,23 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends SingleFragmentActivity  {
 
     ArrayList<Movie> mGridData = new ArrayList<Movie>();
     GridViewAdapter mGridAdapter;
-    @Override
+    /*@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        GridView mGridView = (GridView) findViewById(R.id.gridView);
 
-        mGridAdapter = new GridViewAdapter(this, R.layout.content_main, mGridData);
-        fetchMovie();
-        mGridView.setAdapter(mGridAdapter);
+    }*/
+
+    @Override
+    protected Fragment createFragment() {
+        return new MovieFragment();
     }
 
-    public void fetchMovie() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://api.themoviedb.org/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        MyApi tmdbApi = retrofit.create(MyApi.class);
-
-        // parameter apa aja yg dibutuhkan, bisa dilihat disini ya
-        // http://docs.themoviedb.apiary.io/#reference/discover/discovermovie/get
-        Call<Discover> call = tmdbApi.discoverMovies("popularity.desc",
-                BuildConfig.TMDB_API_KEY);
-
-        call.enqueue(new Callback<Discover>() {
-            @Override
-            public void onResponse(Call<Discover> call, Response<Discover> response) {
-                StringBuilder sb = new StringBuilder();
-                for(Movie movie : response.body().getMovies()){ 
-                    Log.d("gambar","http://image.tmdb.org/t/p/w185"+movie.getPosterPath());
-                    mGridAdapter.add(movie);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Discover> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Failed to fetch movie", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
 
     @Override

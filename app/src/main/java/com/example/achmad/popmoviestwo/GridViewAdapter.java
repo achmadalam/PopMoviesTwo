@@ -54,10 +54,6 @@ public class GridViewAdapter extends ArrayAdapter<Movie> {
         holder.titleTextView.setText(Html.fromHtml(item.getTitle()));
         Picasso.with(mContext).load("http://image.tmdb.org/t/p/w185"+item.getPosterPath()).into(holder.imageView);
 
-        if(position == mGridData.size()-1){
-            mGridData.addAll(mGridData);
-        }
-
         return row;
     }
     static class ViewHolder {
