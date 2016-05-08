@@ -1,4 +1,34 @@
 <resources>
-    <string name="app_name">PopMoviesTwo</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name" translatable="false">Popular Movies</string>
+    <string name="action_settings" translatable="true">Settings</string>
+    <string name="hello_world" translatable="false">Hello world!</string>
+    <string name="action_sort_by">Sort by</string>
+    <string name="movie_title" translatable="false">Chappie</string>
+    <string name="movie_year" translatable="false">2015</string>
+    <string name="movie_duration" translatable="false">120 minutes</string>
+    <string name="movie_rating" translatable="false">8.1 / 10</string>
+    <string name="mark_as_favorite">mark as favorite</string>
+    <string name="summary">Summary</string>
+    <string name="movie_summary" translatable="false">Every child comes into the world full of promise, and none more so than Chappie: he is gifted, special, a prodigy. Chappie he is a robot.</string>
+    <string name="trailers">Trailers</string>
+    <string name="trailer">Trailer</string>
+    <string name="detail_activity">Detail Activity</string>
+    <string name="sort_by">Sort By</string>
+    <string name="please_wait">Please wait..</string>
+    <string name="movie_detail">Movie Detail</string>
+    <string name="no_internet_message">Do you want to open settings?</string>
+    <string name="no_internet_title">Something wrong with your Internet</string>
+    <string name="comment">Comment</string>
+    <string name="favorite_movie">Favorite Movie</string>
+    <string name="duration">%1$d minutes</string>
+    <string name="removed_from_favorite">Removed from favorite movie</string>
+    <string name="saved_to_favorite">Saved to Favorite</string>
+    <string name="fetch_movie_detail">Get movie information..</string>
+    <string name="no_movie">No movie to show</string>
+    <string name="failed_to_favorite">Failed to add favorite</string>
+    <string name="popularity">Popularity</string>
+    <string name="hi_rate">Highest rated</string>
+    <string name="high_rate">(Rating)</string>
+    <string name="favorite">(Favorite)</string>
+    <string name="by_popularity">(Popularity)</string>
 </resources>

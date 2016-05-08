@@ -1,33 +1,15 @@
 package com.example.achmad.popmoviestwo;
 
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AbsListView;
-import android.widget.GridView;
-import android.widget.Toast;
 
-import com.example.achmad.popmoviestwo.Api.MyApi;
-import com.example.achmad.popmoviestwo.BuildConfig;
-import com.example.achmad.popmoviestwo.Data.Discover;
 import com.example.achmad.popmoviestwo.Data.Movie;
 
 import java.util.ArrayList;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-public class MainActivity extends SingleFragmentActivity  {
+public class MainActivity extends SingleFragmentActivity implements MovieFragment.PosterCallback {
 
     ArrayList<Movie> mGridData = new ArrayList<Movie>();
     GridViewAdapter mGridAdapter;
@@ -66,5 +48,20 @@ public class MainActivity extends SingleFragmentActivity  {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onMoviePosterClicked(int movieId) {
+
+        /*if(findViewById(R.id.movie_detail_container) != null){
+            DetailFragment detailFragment = DetailFragment.newInstance(movieId, true);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.movie_detail_container, detailFragment)
+                    .commit();
+        }else{*/
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra("Movieid", movieId);
+        startActivity(intent);
+        /*}*/
     }
 }
