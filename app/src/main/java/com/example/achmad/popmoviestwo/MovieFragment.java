@@ -124,7 +124,7 @@ public class MovieFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Discover> call, Throwable t) {
-                Toast.makeText(getActivity(), "Failed to fetch movie", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getApplicationContext(), "Failed to fetch movie", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -135,11 +135,13 @@ public class MovieFragment extends Fragment {
             public void onLoadMore() {
                 Log.d("Paginate", "onLoadMore");
                 fetchMovieNextPage();
+                mIsFinished = false;
+                isLoading();
             }
 
             @Override
             public boolean isLoading() {
-                Log.d("mCurrentPage", "=" + mCurrentPage);
+                Log.d("sizenya", "=" + mGridData.size());
                 if (mCurrentPage == mTotalPages) {
                     mPaginate.setHasMoreDataToLoad(false);
                     return false;
@@ -181,17 +183,18 @@ public class MovieFragment extends Fragment {
         call.enqueue(new Callback<Discover>() {
             @Override
             public void onResponse(Call<Discover> call, Response<Discover> response) {
-                Log.d("total", "tes");
-                mGridData.addAll(response.body().getMovies());
+                int gridsize = mGridData.size();
+                for (Movie movie : response.body().getMovies()) {
+                    mGridData.add(gridsize, movie);
+                }
                 mGridAdapter.notifyDataSetChanged();
+                Log.d("setelah ditambah jadi", "" + mCurrentPage);
+                mCurrentPage++;
                 mIsFinished = true;
-                ++mCurrentPage;
             }
 
             @Override
             public void onFailure(Call<Discover> call, Throwable t) {
-                mIsFinished = true;
-                ++mCurrentPage;
                 Toast.makeText(getActivity(), "Failed to fetch movie", Toast.LENGTH_SHORT).show();
             }
         });
